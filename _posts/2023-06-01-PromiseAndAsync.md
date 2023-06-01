@@ -14,7 +14,7 @@ sidebar:
 
 const promised_JsZipUtils_getBinaryContent = (path: string) => {
   return new Promise((resolve, reject) => {
-    //JSZipUtils.getBinaryContent(path, (err, data) => {}): JSZip 라이브러리 함수
+    //JSZipUtils.getBinaryContent(): JSZip 라이브러리 함수
     JSZipUtils.getBinaryContent(path, (err, data) => {
       if (err) {
         reject(err);
@@ -28,11 +28,11 @@ const promised_JsZipUtils_getBinaryContent = (path: string) => {
 
 export async function generateAssetZip(filesData) {
   const data = await promised_JsZipUtils_getBinaryContent(path + '/' + filesData.FileData.id);
-  // zip.file(path, data, {binary: true}): JSZip 라이브러리 함수
+  // zip.file(): JSZip 라이브러리 함수
   zip.file(filesData.FileData.id + filesData.FileData.fileType, data, { 
     binary: true,
   });
-  // generateAsync: JSZip 라이브러리 함수
+  // generateAsync(): JSZip 라이브러리 함수
   const result = await zip.generateAsync({ type: 'blob' }); 
   const getMD5 = md5(result);
   return { result, getMD5 };
